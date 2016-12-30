@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="ua.com.codefire_FishPlaces_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>ua.com.codefire.models.Places</class>
+        <class>ua.com.codefire.models.Links</class>
+        <class>ua.com.codefire.models.Fishes</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/new_schema?zeroDateTimeBehavior=convertToNull"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.password" value="12345"/>
+      
+            <property name="minPoolSize" value="5" />
+            <property name="maxPoolSize" value="20" />
+            <property name="acquireIncrement" value="1" />
+            <property name="maxStatements" value="50" />
+            <property name="idleConnectionTestPeriod" value="3000" />
+            <property name="loginTimeout" value="300" />
+        </properties>
+    </persistence-unit>
+</persistence>
