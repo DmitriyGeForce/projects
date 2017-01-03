@@ -56,12 +56,7 @@ public class Fishes implements Serializable {
     public Fishes() {
     }
 
-    public Fishes(Integer idfishes) {
-        this.idfishes = idfishes;
-    }
-
-    public Fishes(Integer idfishes, String fishName) {
-        this.idfishes = idfishes;
+    public Fishes(String fishName) {
         this.fishName = fishName;
     }
 

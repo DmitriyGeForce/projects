@@ -6,6 +6,7 @@
 package ua.com.codefire.dao;
 
 import java.util.List;
+import ua.com.codefire.models.Fishes;
 import ua.com.codefire.models.Places;
 
 /**
@@ -19,4 +20,6 @@ public interface IRepository {
     List<Places> getByCity(String city ,int from, int to);
     List<Places> getPlacesByCoords(double lng, double lat, int km);
     List<Places> getPlacesByFish(String fish, int from, int to);
+    void addPlace(Places place);
+    void addFish(Fishes fish);
 }

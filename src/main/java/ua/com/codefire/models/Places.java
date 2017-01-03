@@ -78,12 +78,14 @@ public class Places implements Serializable {
     public Places() {
     }
 
-    public Places(Integer idplaces) {
-        this.idplaces = idplaces;
+    public Places(String placeName, String placeGeoLat, String placeGeoLong, String placeDescript) {
+        this.placeName = placeName;
+        this.placeGeoLat = placeGeoLat;
+        this.placeGeoLong = placeGeoLong;
+        this.placeDescript = placeDescript;
     }
 
-    public Places(Integer idplaces, String placeName, String placeGeoLat, String placeGeoLong) {
-        this.idplaces = idplaces;
+    public Places(String placeName, String placeGeoLat, String placeGeoLong) {
         this.placeName = placeName;
         this.placeGeoLat = placeGeoLat;
         this.placeGeoLong = placeGeoLong;

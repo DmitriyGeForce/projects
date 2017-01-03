@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import ua.com.codefire.dao.IRepository;
 import ua.com.codefire.dao.PlacesRepository;
+import ua.com.codefire.models.Fishes;
 import ua.com.codefire.models.Places;
 import ua.com.codefire.models.View;
 import ua.com.codefire.services.IService;
@@ -82,9 +83,12 @@ public class AppRunner {
             @RequestParam("city") String city,
             @RequestParam(value = "from", required = false) Integer from,
             @RequestParam(value = "to", required = false) Integer to) throws IOException {
-        List<Places> result = service.getByCity(city, from-1, to);
-        if (null!=result) return result;
-        else return Arrays.asList(new Places("Error"));
+        List<Places> result = service.getByCity(city, from - 1, to);
+        if (null != result) {
+            return result;
+        } else {
+            return Arrays.asList(new Places("Error"));
+        }
     }
 
     @JsonView(View.Summary.class)
@@ -94,9 +98,12 @@ public class AppRunner {
             @RequestParam("name") String fish,
             @RequestParam(value = "from", required = false) Integer from,
             @RequestParam(value = "to", required = false) Integer to) throws IOException {
-        List<Places> result = service.getPlacesByFish(fish, from-1, to);
-        if (null!=result) return result;
-        else return Arrays.asList(new Places("Error"));
+        List<Places> result = service.getPlacesByFish(fish, from - 1, to);
+        if (null != result) {
+            return result;
+        } else {
+            return Arrays.asList(new Places("Error"));
+        }
     }
 
     @JsonView(View.Summary.class)
@@ -106,6 +113,29 @@ public class AppRunner {
             @RequestParam("lat") Double latitude,
             @RequestParam("radius") Integer radius) {
         return service.getPlacesByCoords(longitude, latitude, radius);
+    }
+
+    @GetMapping("/v1/places/addPlace")
+    public void addPlace(
+            @RequestParam("placeName") String name,
+            @RequestParam("lng") String longitude,
+            @RequestParam("lat") String latitude,
+            @RequestParam(value = "description", required = false) String description) {
+        if (null != name.trim() && null != longitude.trim() && null != latitude.trim())  {
+            if (null == description.trim()) {
+                service.addPlace(new Places(name, latitude, longitude));
+            } else {
+                service.addPlace(new Places(name, latitude, longitude, description));
+            }
+        }
+    }
+
+    @GetMapping("/v1/places/addFish")
+    public void addPlace(
+            @RequestParam("fishName") String name) {
+        if (null != name.trim()) {
+            service.addFish(new Fishes(name));
+        }
     }
 
     public static void main(String[] args) {

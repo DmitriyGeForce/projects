@@ -83,7 +83,7 @@ public class PlacesRepository implements IRepository {
                 }
                 links.get(i).getIdplaces().setPlaceDescript(fishes);
                 places.add(links.get(i).getIdplaces());
-                fishes="";
+                fishes = "";
             }
             return places;
         } else {
@@ -95,6 +95,24 @@ public class PlacesRepository implements IRepository {
     public List<Places> getAll() {
         EntityManager em = getEntityManger();
         return em.createNamedQuery("Places.findAll", Places.class).getResultList();
+    }
+
+    @Override
+    public void addPlace(Places place) {
+        EntityManager em = getEntityManger();
+        em.getTransaction().begin();
+        em.persist(place);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Override
+    public void addFish(Fishes fish) {
+        EntityManager em = getEntityManger();
+        em.getTransaction().begin();
+        em.persist(fish);
+        em.getTransaction().commit();
+        em.close();
     }
 }
 

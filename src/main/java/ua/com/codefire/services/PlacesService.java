@@ -8,6 +8,7 @@ package ua.com.codefire.services;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.com.codefire.dao.IRepository;
+import ua.com.codefire.models.Fishes;
 import ua.com.codefire.models.Places;
 
 /**
@@ -42,5 +43,15 @@ public class PlacesService implements IService{
     @Override
     public List<Places> getPlacesByFish(String fish, int from, int to) {
         return repository.getPlacesByFish(fish, from, to);
+    }
+
+    @Override
+    public void addPlace(Places place) {
+        repository.addPlace(place);
+    }
+
+    @Override
+    public void addFish(Fishes fish) {
+        repository.addFish(fish);
     }
 }
